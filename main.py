@@ -4,9 +4,6 @@ class Car:
         self.PSI = PSI
         self.FuelType = FuelType
 
-    def show(self):
-        print(self.WheelNumber, self.PSI, self.FuelType)
-
         def get_WheelNumber(self):
             return self.WheelNumber
 
@@ -15,6 +12,9 @@ class Car:
 
         def get_FuelType(self):
             return self.FuelType
+
+    def show(self):
+        print(self.WheelNumber, self.PSI, self.FuelType)
 
     def honk(self):
             print("Wallah im Honking")
