@@ -1,11 +1,11 @@
 class Car:
-    def __init__(self, wheel_number, psi, fuel_type ):
-        self.wheel_number = wheel_number
+    def __customize__(self, number_of_wheels: int, psi: float, fuel_type: str):
+        self.number_of_wheels = number_of_wheels
         self.psi = psi
         self.fuel_type = fuel_type
 
-        def get_wheel_number(self):
-            return self.wheel_number
+        def get_number_of_wheels(self):
+            return self.number_of_wheels
 
         def get_psi(self):
             return self.psi
@@ -14,7 +14,7 @@ class Car:
             return self.fuel_type
 
     def show(self):
-        print(self.wheel_number, self.psi, self.fuel_type)
+        print(self.number_of_wheels, self.psi, self.fuel_type)
 
     def honk(self):
             print("Wallah im Honking")
@@ -22,15 +22,15 @@ class Car:
     def drive(self):
             print("Wallah im driving")
 
-car = Car("4", "30", "Diesel")
+car = Car(4, 30, "Diesel")
 car.show()
 car.drive()
 
-car2 = Car("4", "20", "Benzin")
+car2 = Car(4, 20, "Benzin")
 car2.show()
 car2.honk()
 
-car3 = Car("2", "25", "Soler")
+car3 = Car(2, 25, "Soler")
 car3.show()
 car.drive()
 car.honk()
