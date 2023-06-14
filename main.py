@@ -1,20 +1,20 @@
 class Car:
-    def __init__(self, WheelNumber, PSI, FuelType ):
-        self.WheelNumber = WheelNumber
-        self.PSI = PSI
-        self.FuelType = FuelType
+    def __init__(self, wheel_number, psi, fuel_type ):
+        self.wheel_number = wheel_number
+        self.psi = psi
+        self.fuel_type = fuel_type
 
-        def get_WheelNumber(self):
-            return self.WheelNumber
+        def get_wheel_number(self):
+            return self.wheel_number
 
-        def get_PSI(self):
-            return self.PSI
+        def get_psi(self):
+            return self.psi
 
-        def get_FuelType(self):
-            return self.FuelType
+        def get_fuel_type(self):
+            return self.fuel_type
 
     def show(self):
-        print(self.WheelNumber, self.PSI, self.FuelType)
+        print(self.wheel_number, self.psi, self.fuel_type)
 
     def honk(self):
             print("Wallah im Honking")
