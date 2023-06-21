@@ -10,7 +10,7 @@ class Vehicle:
             raise ValueError ("PSI is Higher than the allowed maximum amount")
 
 
-    def __init__(self, speed_of_vehicle, max_speed_of_vehicle, psi, max_psi, number_of_wheels, fuel_type):
+    def __init__(self, speed_of_vehicle=50, max_speed_of_vehicle=100, psi=25, max_psi=40, number_of_wheels=4, fuel_type=FuelType.GASOLINE):
         self.speed_of_vehicle = speed_of_vehicle
         self.max_speed_of_vehicle = max_speed_of_vehicle
         self.psi = psi
@@ -19,23 +19,37 @@ class Vehicle:
         self.number_of_wheels = number_of_wheels
         self.fuel_type = fuel_type
 
+
+# Drive Function:
     def drive(self, speed_of_vehicle: int):
+        if speed_of_vehicle > self.max_speed_of_vehicle:
+            raise ValueError("Current speed is above the maximum possible speed")
+        self.speed_of_vehicle = speed_of_vehicle
         print("Walla Vehicle is driving at " + str(speed_of_vehicle) + " KMH")
-    def fill_up_tires(self, psi: float):
+
+
+    def increase_speed_of_vehicle(self, amount_of_speed_increase: int):
+        self.amount_of_speed_increase = amount_of_speed_increase
+        self.speed_of_vehicle += self.amount_of_speed_increase
+        print(f"Vehicle is now driving in  {self.speed_of_vehicle}  KMH")
+
+
+    def decrease_speed_of_vehicle(self, amount_of_speed_decrease: int):
+        self.amount_of_speed_decrease = amount_of_speed_decrease
+        self.speed_of_vehicle -= amount_of_speed_decrease
+        print(f"Vehicle is now driving in  {self.speed_of_vehicle} KMH")
+        if self.speed_of_vehicle < 0:
+            raise ValueError("You cannot drive below 0 KMH")
+
+
+#Pump Tires Function:
+    def pump_tires(self, amount_of_psi_to_pump: float):
         print("Filling air in the tires....")
-        self.psi = psi
-        print("Tires have completed filling up. PSI: ", self.psi)
+        self.amount_of_psi_to_pump = amount_of_psi_to_pump
+        if self.psi + amount_of_psi_to_pump > self.max_psi:
+            raise ValueError ("Amount of PSI pumped is higher than allowed maximum")
+        print("Tires have completed filling up. PSI: ", self.psi + self.amount_of_psi_to_pump)
 
-
-car1 = Vehicle(50, 60, 30, 45, 3, Vehicle.FuelType.GASOLINE)
-psi_value = car1.psi
-wheels_value = car1.number_of_wheels
-
-car1.drive(50)
-
-print("PSI", psi_value)
-print("Number of wheels", wheels_value)
-print("Fuel Type", Vehicle.FuelType)
 
 
 
