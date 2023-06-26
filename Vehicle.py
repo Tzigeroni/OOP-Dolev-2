@@ -10,9 +10,9 @@ class Vehicle:
             raise ValueError ("PSI is Higher than the allowed maximum amount")
 
 
-    def __init__(self, speed_of_vehicle=50, max_speed_of_vehicle=100, psi=25, max_psi=40, number_of_wheels=4, fuel_type=FuelType.GASOLINE):
+    def __init__(self, speed_of_vehicle=50, max_speed=100, psi=25, max_psi=40, number_of_wheels=4, fuel_type=FuelType.GASOLINE):
         self.speed_of_vehicle = speed_of_vehicle
-        self.max_speed_of_vehicle = max_speed_of_vehicle
+        self.max_speed = max_speed
         self.psi = psi
         self.max_psi = max_psi
         self.check_psi(psi)
@@ -20,9 +20,8 @@ class Vehicle:
         self.fuel_type = fuel_type
 
 
-# Drive Function:
     def drive(self, speed_of_vehicle: int):
-        if speed_of_vehicle > self.max_speed_of_vehicle:
+        if speed_of_vehicle > self.max_speed:
             raise ValueError("Current speed is above the maximum possible speed")
         self.speed_of_vehicle = speed_of_vehicle
         print("Walla Vehicle is driving at " + str(speed_of_vehicle) + " KMH")
@@ -31,24 +30,29 @@ class Vehicle:
     def increase_speed_of_vehicle(self, amount_of_speed_increase: int):
         self.amount_of_speed_increase = amount_of_speed_increase
         self.speed_of_vehicle += self.amount_of_speed_increase
-        print(f"Vehicle is now driving in  {self.speed_of_vehicle}  KMH")
+        if self.speed_of_vehicle > self.max_speed:
+            print("Current speed plus the increase exceeds the allowed maximum speed. Please choose again.")
+            self.speed_of_vehicle -= self.amount_of_speed_increase
+        else:
+            print(f"Vehicle is now driving at {self.speed_of_vehicle} KMH")
 
 
     def decrease_speed_of_vehicle(self, amount_of_speed_decrease: int):
         self.amount_of_speed_decrease = amount_of_speed_decrease
         self.speed_of_vehicle -= amount_of_speed_decrease
-        print(f"Vehicle is now driving in  {self.speed_of_vehicle} KMH")
         if self.speed_of_vehicle < 0:
-            raise ValueError("You cannot drive below 0 KMH")
+            print("Current speed minus the decreased speed cannot be below zero. Please choose again.")
+            self.speed_of_vehicle += self.amount_of_speed_decrease
+        else:
+            print(f"Vehicle is now driving at {self.speed_of_vehicle} KMH")
 
-
-#Pump Tires Function:
     def pump_tires(self, amount_of_psi_to_pump: float):
         print("Filling air in the tires....")
         self.amount_of_psi_to_pump = amount_of_psi_to_pump
         if self.psi + amount_of_psi_to_pump > self.max_psi:
-            raise ValueError ("Amount of PSI pumped is higher than allowed maximum")
-        print("Tires have completed filling up. PSI: ", self.psi + self.amount_of_psi_to_pump)
+            raise ValueError("Amount of PSI pumped is higher than allowed maximum")
+        self.psi += self.amount_of_psi_to_pump
+        print("Tires have completed filling up. PSI:", self.psi)
 
 
 
