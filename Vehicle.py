@@ -21,13 +21,17 @@ class Vehicle:
 
 
     def drive(self, speed_of_vehicle: int):
-        if speed_of_vehicle > self.max_speed:
-            raise ValueError("Current speed is above the maximum possible speed")
-        self.speed_of_vehicle = speed_of_vehicle
-        print("Walla Vehicle is driving at " + str(speed_of_vehicle) + " KMH")
+        try:
+            if speed_of_vehicle > self.max_speed:
+                raise ValueError("Current speed is above the maximum possible speed")
+            self.speed_of_vehicle = speed_of_vehicle
+            print("Walla Vehicle is driving at " + str(speed_of_vehicle) + " KMH")
+        except ValueError as e:
+            print("Error: " + str(e))
 
 
-    def increase_speed_of_vehicle(self, amount_of_speed_increase: int):
+
+    def increase_speed(self, amount_of_speed_increase: int):
         self.amount_of_speed_increase = amount_of_speed_increase
         self.speed_of_vehicle += self.amount_of_speed_increase
         if self.speed_of_vehicle > self.max_speed:
@@ -58,3 +62,7 @@ class Vehicle:
 
 
 
+car1 = Vehicle(speed_of_vehicle=50,max_speed=100,psi=30,max_psi=40,number_of_wheels=4,fuel_type=Vehicle.FuelType.GASOLINE)
+
+
+car1.drive(50)
